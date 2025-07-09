@@ -1,0 +1,15 @@
+h1{
+    text-align: center;
+    margin-top: 20px;
+}
+
+h2{
+    text-align: center;
+    margin-top: 20px;
+}
+
+
+.btn {
+  writing-mode: horizontal-tb;
+  width: 70px; /* 追加 */
+}
