@@ -47,11 +47,11 @@
     <form class="container mt-5" action="/todo" method="POST">
         <div class="mb-3">
             <label for="newTask" class="form-label">新しいタスク</label>
-            <input type="text" class="form-control" id="newTask" aria-describedby="emailHelp">
+            <input type="text" class="form-control" id="newTask" name="name" placeholder="タスクを入力してください" required>
         </div>
         <div class="mb-3">
-            <label for="exampleFormControlTextarea1" class="form-label">作業の概要</label>
-            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+            <label for="description" class="form-label">作業の概要</label>
+            <textarea class="form-control" name="description" rows="3"></textarea>
         </div>
         <button type="submit" class="btn btn-primary">登録</button>
     </form>

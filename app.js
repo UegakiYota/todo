@@ -62,6 +62,7 @@ app.get('/todo', function (req, res) { return __awaiter(_this, void 0, void 0, f
         }
     });
 }); });
+// 新規タスク登録画面のルーティングここで削除やタスクの完了ができると良い
 app.get('/todo/new', function (req, res) {
     res.render('todos/new');
 });

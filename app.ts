@@ -21,7 +21,8 @@ app.get('/todo', async (req, res) => {
   res.render('index', { tasks });
 });
 
-app.get('/todo/new', (req, res) => { // 新規タスク登録画面のルーティングここで削除やタスクの完了ができると良い
+// 新規タスク登録画面のルーティングここで削除やタスクの完了ができると良い
+app.get('/todo/new', (req, res) => { 
     res.render('todos/new');
 });
 

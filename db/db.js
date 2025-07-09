@@ -7,4 +7,4 @@ const pool = mysql.createPool({
   database: 'todo_db'
 });
 
-module.exports = pool.promise();const db = require('./db');
+module.exports = pool.promise();
