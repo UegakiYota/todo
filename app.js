@@ -1,3 +1,4 @@
+"use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -34,7 +35,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-var _this = this;
+Object.defineProperty(exports, "__esModule", { value: true });
 var express = require('express');
 var app = express();
 var path = require('path');
@@ -50,7 +51,7 @@ app.use(methodOverride('_method')); // _methodクエリパラメータを使用
 app.use(express.urlencoded({ extended: true })); //expressのミドルウェアを設定
 app.use(express.static(path.join(__dirname, 'public'))); // 静的ファイルの提供
 // 例：タスク一覧取得
-app.get('/todo', function (req, res) { return __awaiter(_this, void 0, void 0, function () {
+app.get('/todo', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var tasks;
     return __generator(this, function (_a) {
         switch (_a.label) {
@@ -66,7 +67,7 @@ app.get('/todo', function (req, res) { return __awaiter(_this, void 0, void 0, f
 app.get('/todo/new', function (req, res) {
     res.render('todos/new');
 });
-app.post('/todo', function (req, res) { return __awaiter(_this, void 0, void 0, function () {
+app.post('/todo', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var _a, name, description;
     return __generator(this, function (_b) {
         switch (_b.label) {
@@ -85,7 +86,7 @@ app.get('/todo/:id/edit', function (req, res) {
     // ここでタスクIDに基づいてデータを取得し、編集画面に渡す
     res.render('todos/edit', { taskId: taskId }); // 編集画面にタスクIDを渡す、ここで削除も行える
 });
-app.post('/todo', function (req, res) { return __awaiter(_this, void 0, void 0, function () {
+app.post('/todo', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var _a, name, description;
     return __generator(this, function (_b) {
         switch (_b.label) {
@@ -99,7 +100,7 @@ app.post('/todo', function (req, res) { return __awaiter(_this, void 0, void 0, 
         }
     });
 }); });
-app.put('/todo/:id', function (req, res) { return __awaiter(_this, void 0, void 0, function () {
+app.put('/todo/:id', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var taskId, _a, name, description, completed;
     return __generator(this, function (_b) {
         switch (_b.label) {
@@ -115,7 +116,7 @@ app.put('/todo/:id', function (req, res) { return __awaiter(_this, void 0, void 
     });
 }); });
 // タスク削除
-app.delete('/todo/:id', function (req, res) { return __awaiter(_this, void 0, void 0, function () {
+app.delete('/todo/:id', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var taskId;
     return __generator(this, function (_a) {
         switch (_a.label) {
@@ -129,6 +130,4 @@ app.delete('/todo/:id', function (req, res) { return __awaiter(_this, void 0, vo
         }
     });
 }); });
-app.listen(3000, function () {
-    console.log('今やってる!!');
-});
+exports.default = app; // appをエクスポートして、他のモジュールで使用できるようにする

@@ -64,9 +64,4 @@ app.delete('/todo/:id', async (req: Request, res: Response) => {
   res.redirect('/todo');
 });
 
-app.listen(3000, () => { // ポート3000でサーバーを起動
-    console.log('今やってる!!');
-});
-
-
-
+export default app; // appをエクスポートして、他のモジュールで使用できるようにする
