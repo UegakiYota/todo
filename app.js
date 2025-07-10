@@ -104,20 +104,6 @@ app.get('/todo/:id/edit', function (req, res) {
     // ここでタスクIDに基づいてデータを取得し、編集画面に渡す
     res.render('todos/edit', { taskId: taskId }); // 編集画面にタスクIDを渡す、ここで削除も行える
 });
-app.post('/todo', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var _a, name, description;
-    return __generator(this, function (_b) {
-        switch (_b.label) {
-            case 0:
-                _a = req.body, name = _a.name, description = _a.description;
-                return [4 /*yield*/, db.query('INSERT INTO tasks (name, description) VALUES (?, ?)', [name, description])];
-            case 1:
-                _b.sent(); // データベースにタスクを保存
-                res.redirect('/todo');
-                return [2 /*return*/];
-        }
-    });
-}); });
 // タスク更新
 app.put('/todo/:id', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var taskId, _a, name, description, completed;
@@ -126,7 +112,7 @@ app.put('/todo/:id', function (req, res) { return __awaiter(void 0, void 0, void
             case 0:
                 taskId = req.params.id;
                 _a = req.body, name = _a.name, description = _a.description, completed = _a.completed;
-                return [4 /*yield*/, db.query('UPDATE tasks SET name = ?, description = ?, completed = ? WHERE id = ?', [name, description, completed === 'on', taskId])];
+                return [4 /*yield*/, db.query('UPDATE tasks SET name = ?, description = ?, completed = ? WHERE id = ?', [name, description, completed, taskId])];
             case 1:
                 _b.sent();
                 res.redirect('/todo');

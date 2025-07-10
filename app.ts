@@ -50,11 +50,7 @@ app.get('/todo/:id/edit', (req: Request, res: Response) => { // タスク編集�
     res.render('todos/edit', { taskId }); // 編集画面にタスクIDを渡す、ここで削除も行える
 });
 
-app.post('/todo', async (req: Request, res: Response) => {
-  const { name, description } = req.body;
-  await db.query('INSERT INTO tasks (name, description) VALUES (?, ?)', [name, description]);// データベースにタスクを保存
-  res.redirect('/todo');
-});
+
 
 // タスク更新
 app.put('/todo/:id', async (req: Request, res: Response) => {
@@ -62,7 +58,7 @@ app.put('/todo/:id', async (req: Request, res: Response) => {
   const { name, description, completed } = req.body;
   await db.query(
     'UPDATE tasks SET name = ?, description = ?, completed = ? WHERE id = ?',
-    [name, description, completed === 'on', taskId]
+    [name, description, completed , taskId]
   );
   res.redirect('/todo');
 });

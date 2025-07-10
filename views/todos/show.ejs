@@ -46,26 +46,26 @@
     <h1 class="text-center">タスク詳細</h1>
     <div class="container mt-5">
         <a href="/todo">ホームに戻る</a>
-        <div class="mb-3">
-            <label for="newTask" class="form-label">タスク名</label>
-            <input type="text" class="form-control" name="name" id="newTask" value="<%= task.name %>" required>
-        </div>
-        <div class="mb-3">
-            <label for="description" class="form-label">作業の概要</label>
-            <textarea class="form-control" name="description" rows="3"><%= task.description %></textarea>
-        </div>
-    <form class="container mt-5" action="/todo">
-        <button type="submit" class="btn btn-primary">編集</button>
-    </form>
-    <form class="container mt-5" action="/todo/<%= task.id %>?_method=DELETE" method="POST">
-        <button type="submit" class="btn btn-danger">削除</button>
-    </form>
-    <footer class =" footer bg-dark py-3 mt-3">
-        <div class = "container">
-            <span class = "text-muted">&copy; todoリスト</span>
-        </div>
-    </footer>
-    <script src="app.js"></script>
+        <form class="container mt-5" action="/todo/<%= task.id %>?_method=PUT" method="POST">
+            <div class="mb-3">
+                <label for="newTask" class="form-label fw-bold">タスク名</label>
+                <input type="text" class="form-control" name="name" id="newTask" value="<%= task.name %>" required>
+            </div>
+            <div class="mb-3">
+                <label for="description" class="form-label fw-bold">作業の概要</label>
+                <textarea class="form-control" name="description" rows="3"><%= task.description %></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">編集</button>
+        </form>
+        <form class="container mt-5" action="/todo/<%= task.id %>?_method=DELETE" method="POST">
+            <button type="submit" class="btn btn-danger">削除</button>
+        </form>
+        <footer class =" footer bg-dark py-3 mt-3">
+            <div class = "container">
+                <span class = "text-muted">&copy; todoリスト</span>
+            </div>
+        </footer>
+        <script src="app.js"></script>
     </div>
 </body>
 </html>
