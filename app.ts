@@ -34,6 +34,16 @@ app.post('/todo', async (req: Request, res: Response) => {
   res.redirect('/todo');
 });
 
+// タスクの詳細画面
+app.get('/todo/:id', async (req: Request, res: Response) => {
+    const taskId = req.params.id; // URLパラメータからタスクIDを取得
+    const [[task]] = await db.query('SELECT * FROM tasks WHERE id = ?', [taskId]); // タスクIDに基づいてデータを取得
+    if (!task) {
+        return res.status(404).send('タスクが見つかりません'); // タスクが存在しない場合は404エラーを返す
+    }
+    res.render('todos/show', { task }); // タスクIDを渡して詳細画面を表示
+});
+
 app.get('/todo/:id/edit', (req: Request, res: Response) => { // タスク編集画面のルーティング
     const taskId = req.params.id; // URLパラメータからタスクIDを取得
     // ここでタスクIDに基づいてデータを取得し、編集画面に渡す
@@ -46,7 +56,7 @@ app.post('/todo', async (req: Request, res: Response) => {
   res.redirect('/todo');
 });
 
-
+// タスク更新
 app.put('/todo/:id', async (req: Request, res: Response) => {
   const taskId = req.params.id;
   const { name, description, completed } = req.body;

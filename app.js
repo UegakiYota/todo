@@ -81,6 +81,24 @@ app.post('/todo', function (req, res) { return __awaiter(void 0, void 0, void 0,
         }
     });
 }); });
+// タスクの詳細画面
+app.get('/todo/:id', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var taskId, task;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                taskId = req.params.id;
+                return [4 /*yield*/, db.query('SELECT * FROM tasks WHERE id = ?', [taskId])];
+            case 1:
+                task = (_a.sent())[0][0];
+                if (!task) {
+                    return [2 /*return*/, res.status(404).send('タスクが見つかりません')]; // タスクが存在しない場合は404エラーを返す
+                }
+                res.render('todos/show', { task: task }); // タスクIDを渡して詳細画面を表示
+                return [2 /*return*/];
+        }
+    });
+}); });
 app.get('/todo/:id/edit', function (req, res) {
     var taskId = req.params.id; // URLパラメータからタスクIDを取得
     // ここでタスクIDに基づいてデータを取得し、編集画面に渡す
@@ -100,6 +118,7 @@ app.post('/todo', function (req, res) { return __awaiter(void 0, void 0, void 0,
         }
     });
 }); });
+// タスク更新
 app.put('/todo/:id', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var taskId, _a, name, description, completed;
     return __generator(this, function (_b) {
