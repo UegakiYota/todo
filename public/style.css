@@ -20,4 +20,5 @@ h2{
     width: 100%;
     background-color: #343a40; /* Bootstrapのダークテーマ */
     color: white;
+    padding-left: 0;
 }
