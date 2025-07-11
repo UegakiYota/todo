@@ -1,40 +1,7 @@
 <% layout('layouts/boilerplate') %>
 <body>
-    <!-- 以下ナビバー -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light"> 
-    <div class="container-fluid">
-        <a class="navbar-brand" href="#">Navbar</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Home</a>
-            </li>
-            <li class="nav-item">
-            <a class="nav-link" href="/todo/new">新規登録</a>
-            </li>
-            <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Dropdown
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li><a class="dropdown-item" href="#">Action</a></li>
-                <li><a class="dropdown-item" href="/todo/new">新規登録</a></li>
-                <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item" href="#">Something else here</a></li>
-            </ul>
-            </li>
-            <li class="nav-item">
-            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-            </li>
-        </ul>
-        </div>
-    </div>
-    </nav>
-    <!-- ここまでナビバー -->
-     <div class="mb-3">
+    <div>
+    <div class="mb-3">
         <div class="col-6 text-center mx-auto">
             <h1 class="">ToDoリスト</h1>
         </div>
@@ -68,22 +35,14 @@
     <div class="container">
     <!-- 完了タスク -->
     <ul class="list-group">
-    <% tasks.filter(task => task.completed).forEach(task => { %>
-    <li class="list-group-item d-flex justify-content-between align-items-center">
-        <input type="text" class="form-control me-2 text-muted" value="<%= task.name %>" readonly>
-        <form action="/todo/<%= task.id %>/revert" method="POST" style="display:inline;">
-        <button type="submit" class="btn btn-primary">戻す</button>
-        </form>
-    </li>
-    <% }) %>
-</ul>
-
-
-    <footer class =" footer bg-dark py-3 mt-3">
-        <div class = "container-fluid">
-            <span class = "text-muted">&copy; todoリスト</span>
-        </div>
-    </footer>
-    <script src="app.js"></script>
+        <% tasks.filter(task => task.completed).forEach(task => { %>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            <input type="text" class="form-control me-2 text-muted" value="<%= task.name %>" readonly>
+            <form action="/todo/<%= task.id %>/revert" method="POST" style="display:inline;">
+            <button type="submit" class="btn btn-primary">戻す</button>
+            </form>
+        </li>
+        <% }) %>
+    </ul>
+    </div>
 </body>
-</html>
