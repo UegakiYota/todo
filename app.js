@@ -104,6 +104,36 @@ app.get('/todo/:id/edit', function (req, res) {
     // ここでタスクIDに基づいてデータを取得し、編集画面に渡す
     res.render('todos/edit', { taskId: taskId }); // 編集画面にタスクIDを渡す、ここで削除も行える
 });
+// タスクを完了にする
+app.post('/todo/:id/complete', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var taskId;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                taskId = req.params.id;
+                return [4 /*yield*/, db.query('UPDATE tasks SET completed = TRUE WHERE id = ?', [taskId])];
+            case 1:
+                _a.sent();
+                res.redirect('/todo');
+                return [2 /*return*/];
+        }
+    });
+}); });
+// タスクを未完了に戻す
+app.post('/todo/:id/revert', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var taskId;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                taskId = req.params.id;
+                return [4 /*yield*/, db.query('UPDATE tasks SET completed = FALSE WHERE id = ?', [taskId])];
+            case 1:
+                _a.sent();
+                res.redirect('/todo');
+                return [2 /*return*/];
+        }
+    });
+}); });
 // タスク更新
 app.put('/todo/:id', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var taskId, _a, name, description, completed;

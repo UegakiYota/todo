@@ -64,14 +64,15 @@
     </div>
     <div class="container">
         <ul class="list-group">
-        <% tasks.forEach(task => { %>
-            <li class="list-group-item d-flex justify-content-between align-items-center">
+        <% tasks.filter(task => !task.completed).forEach(task => { %>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
             <span><a href="/todo/<%= task.id %>"><%= task.name %></a></span>
             <div>
-                <button class="btn btn-primary">完了</button>
-                <!-- <button class="btn btn-info">編集</button> -->
+            <form action="/todo/<%= task.id %>/complete" method="POST" style="display:inline;">
+                <button type="submit" class="btn btn-primary">完了</button>
+            </form>
             </div>
-            </li>
+        </li>
         <% }) %>
         </ul>
     </div>
@@ -81,23 +82,17 @@
         <h2>完了タスク</h2>
     </div>
     <div class="container">
-        <ul class="">
-            <li class="d-flex justify-content-between align-items-center">
-                <!-- あとで登録したタスクに変更する -->
-                <input type="text" class="form-control me-2 text-muted" placeholder="タスク名">
-                <button class="btn btn-primary">戻す</button>
-                <button class="btn btn-info">編集</button>
-            </li>
-            <li class="d-flex justify-content-between align-items-center">
-                <!-- あとで登録したタスクに変更する -->
-                <input type="text" class="form-control me-2 text-muted" placeholder="タスク名">
-                <button class="btn btn-primary">戻す</button>
-                <button class="btn btn-info">編集</button>
-            </li>
-        </ul>
-    </div>
-
-
+    <!-- 完了タスク -->
+    <ul class="list-group">
+    <% tasks.filter(task => task.completed).forEach(task => { %>
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+        <input type="text" class="form-control me-2 text-muted" value="<%= task.name %>" readonly>
+        <form action="/todo/<%= task.id %>/revert" method="POST" style="display:inline;">
+        <button type="submit" class="btn btn-primary">戻す</button>
+        </form>
+    </li>
+    <% }) %>
+</ul>
 
 
     <footer class =" footer bg-dark py-3 mt-3">

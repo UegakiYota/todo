@@ -13,3 +13,11 @@ h2{
   writing-mode: horizontal-tb;
   width: 70px; /* 追加 */
 }
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #343a40; /* Bootstrapのダークテーマ */
+    color: white;
+}

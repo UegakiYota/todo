@@ -50,7 +50,19 @@ app.get('/todo/:id/edit', (req: Request, res: Response) => { // タスク編集�
     res.render('todos/edit', { taskId }); // 編集画面にタスクIDを渡す、ここで削除も行える
 });
 
+// タスクを完了にする
+app.post('/todo/:id/complete', async (req: Request, res: Response) => {
+  const taskId = req.params.id;
+  await db.query('UPDATE tasks SET completed = TRUE WHERE id = ?', [taskId]);
+  res.redirect('/todo');
+});
 
+// タスクを未完了に戻す
+app.post('/todo/:id/revert', async (req: Request, res: Response) => {
+  const taskId = req.params.id;
+  await db.query('UPDATE tasks SET completed = FALSE WHERE id = ?', [taskId]);
+  res.redirect('/todo');
+});
 
 // タスク更新
 app.put('/todo/:id', async (req: Request, res: Response) => {
